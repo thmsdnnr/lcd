@@ -47,10 +47,18 @@ table {
 	border-spacing: 0;
 }
 
+body {
+    padding: 10px;
+    background-color: #FFF;
+}
+
 div#container {
   display: flex;
+  width: 50px;
+  justify-content: center;
   flex-flow: row nowrap;
   background-color: black;
+  border-radius: 10%;
 }
 
 div.digit {
