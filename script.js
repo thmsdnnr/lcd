@@ -16,8 +16,7 @@ const digitsOn = {
 
 function reset(n) { //resets all of digit N to low opacity
     for (var i=0;i<=6;i++) {
-        let key='d_0_'+i;
-        console.log(key); // 1 2 4 6 v
+        let key='d_'+n+'_'+i;
         let grain=document.querySelector(`div#${key}`);
         if ((i===0||i===3)||i===5) {
             grain.style.backgroundImage = `url("${hOpacity(0.3)}")`;
@@ -27,10 +26,9 @@ function reset(n) { //resets all of digit N to low opacity
     }   
 }
 
-function setCounter(n) { //sets counter to number n
-    console.log(digitsOn[n]);
+function setGrain(idx, n) { //sets counter idx to number n, 0-9
     digitsOn[n].map(e=>{
-        let key='d_0_'+e;
+        let key='d_'+idx+'_'+e;
         let grain=document.querySelector(`div#${key}`);
         if ((e===0||e===3)||e===5) {
             grain.style.backgroundImage = `url("${hOpacity(1.0)}")`;
@@ -38,9 +36,16 @@ function setCounter(n) { //sets counter to number n
             grain.style.backgroundImage = `url("${vOpacity(1.0)}")`;
         }
     });
-    // d_0_0 thru d_0_6
 }
 
+function setCounter(num) { //sets counter C to number n
+    let nString=String(num).split("");
+    const numDigits=3;
+    let difference=numDigits-nString.length;
+    for (var i=numDigits;i>=0;i--) {
+        if (nString[i]) { setGrain(i+difference, nString[i]); }
+    }
+}
 
 const digitGenerator = (id) => {
     const C=document.getElementById('container');
@@ -48,63 +53,64 @@ const digitGenerator = (id) => {
     digit.id='d_'+id;
     digit.classList.add('digit');
     //top
-let boxTop=document.createElement('div');
-boxTop.id='box-top';
-let g_0=document.createElement('div');
-let g_1=document.createElement('div');
-let g_2=document.createElement('div');
-let g_3=document.createElement('div');
-g_0.classList.add('grain-H', 'H-top');
-g_0.id='d_'+id+'_0';
+    let boxTop=document.createElement('div');
+    boxTop.id='box-top';
+    let g_0=document.createElement('div');
+    let g_1=document.createElement('div');
+    let g_2=document.createElement('div');
+    let g_3=document.createElement('div');
+    g_0.classList.add('grain-H', 'H-top');
+    g_0.id='d_'+id+'_0';
 
-g_1.classList.add('grain-V', 'V-top-left');
-g_1.id='d_'+id+'_1';
+    g_1.classList.add('grain-V', 'V-top-left');
+    g_1.id='d_'+id+'_1';
 
-g_2.classList.add('grain-V', 'V-top-right');
-g_2.id='d_'+id+'_2';
+    g_2.classList.add('grain-V', 'V-top-right');
+    g_2.id='d_'+id+'_2';
 
-g_3.classList.add('grain-H', 'H-mid');
-g_3.id='d_'+id+'_3';
+    g_3.classList.add('grain-H', 'H-mid');
+    g_3.id='d_'+id+'_3';
 
-boxTop.appendChild(g_0);
-boxTop.appendChild(g_1);
-boxTop.appendChild(g_2);
-boxTop.appendChild(g_3);
+    boxTop.appendChild(g_0);
+    boxTop.appendChild(g_1);
+    boxTop.appendChild(g_2);
+    boxTop.appendChild(g_3);
 
-digit.appendChild(boxTop);
-//bottom
-let boxBottom=document.createElement('div');
-boxBottom.id='box-bottom';
-let g_4=document.createElement('div');
-let g_5=document.createElement('div');
-let g_6=document.createElement('div');
+    digit.appendChild(boxTop);
 
-g_4.classList.add('grain-V', 'V-bottom-left');
-g_4.id='d_'+id+'_4';
+    //bottom
+    let boxBottom=document.createElement('div');
+    boxBottom.id='box-bottom';
+    let g_4=document.createElement('div');
+    let g_5=document.createElement('div');
+    let g_6=document.createElement('div');
 
-g_5.classList.add('grain-H', 'H-bottom');
-g_5.id='d_'+id+'_5';
+    g_4.classList.add('grain-V', 'V-bottom-left');
+    g_4.id='d_'+id+'_4';
 
-g_6.classList.add('grain-V', 'V-bottom-right');
-g_6.id='d_'+id+'_6';
+    g_5.classList.add('grain-H', 'H-bottom');
+    g_5.id='d_'+id+'_5';
 
-boxBottom.appendChild(g_4);
-boxBottom.appendChild(g_5);
-boxBottom.appendChild(g_6);
-digit.appendChild(boxBottom);
+    g_6.classList.add('grain-V', 'V-bottom-right');
+    g_6.id='d_'+id+'_6';
 
-C.appendChild(digit);
+    boxBottom.appendChild(g_4);
+    boxBottom.appendChild(g_5);
+    boxBottom.appendChild(g_6);
+    digit.appendChild(boxBottom);
+
+    C.appendChild(digit);
+    reset(id);
 }
 
 window.onload = function() {
     digitGenerator(0);
-    reset(0);
-    setCounter(9);
-    let i=0;
+    digitGenerator(1);
+    digitGenerator(2);
     setInterval(function(){
-        console.log(i%9);
         reset(0);
-        setCounter(i%9);
-        i++;
-    },300);
+        reset(1);
+        reset(2);
+        setCounter(Math.floor(Math.random()*999));
+    },500);
 }
