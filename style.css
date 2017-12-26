@@ -52,91 +52,99 @@ body {
     background-color: #FFF;
 }
 
+.top-t {
+    border: 1px solid gold;
+}
+
+.top-b {
+    border: 4px solid gold;
+    border-top: none;
+    /* border-right: 4px solid gold; */
+}
+
 div#container {
   display: flex;
-  width: 100px;
-  padding: 4px;
+  width: 128px;
+  height: 64px;
+  padding: 16px;
   justify-content: center;
   flex-flow: row nowrap;
   background-color: black;
   border-radius: 5%;
+  border-style: groove;
+  border: 4px solid salmon;
 }
 
 div.digit {
-    padding: 0px;
-    margin: 0px;
     display: flex;
     flex-flow: row wrap;
     position: relative;
     width: 32px;
-    height: 66px;
+    height: 32px;
     justify-content: center;
-    padding: 0px 2px;
+    padding: 0px 3px;
 }
 
 #box-top {
     position: relative;
-    height: 30px;
+    height: 32px;
     width: 32px;
 }
 
 #box-bottom {
     position: relative;
-    height: 30px;
+    height: 32px;
     width: 32px;
 }
 
 .grain-V {
     width: 6px;
     height: 32px;
-    transition: all 200ms ease;
+    /* transition: all 200ms ease; */
+    background-repeat: no-repeat;
 }
 
 .V-top-left { 
     position: absolute;
-    top: 4;
+    top: 0;
     left: 0;
 }
 .V-top-right { 
     position: absolute;
-    top: 4;
+    top: 0;
     right: 0;
 }
 
 .V-bottom-left { 
     position: absolute;
-    top: -2;
+    top: 0;
     left: 0;
 }
+
 .V-bottom-right { 
     position: absolute;
-    top: -2;
+    top: 0;
     right: 0;
 }
 
 .grain-H {
     width: 32px;
     height: 6px;    
-    transition: all 200ms ease;
+    /* transition: all 200ms ease; */
+    background-repeat: no-repeat;
 }
 
 .H-top {
-    position: relative;
-    top: 0px;
+    position: absolute;
+    top: -4px;
 }
 
 .H-mid {
     position: absolute;
-    bottom: -7px;
+    bottom: -4px;
 }
 
 .H-bottom {
     position: absolute;
-    bottom: 0px;
-}
-
-.middle {
-    width: 100px;
-    left: 10px;
-    position: relative;
+    bottom: -4px;
 }
