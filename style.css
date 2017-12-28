@@ -55,6 +55,8 @@ body {
 #pageContainer {
 	display: flex;
 	width: 700px;
+	max-height: 700px;
+	overflow-y: scroll;
 	margin: auto;
 	padding: 10px;
 	flex-flow: row wrap;
@@ -75,6 +77,6 @@ div#digit {
 	padding: 4px;
 }
 
-svg path {
+svg > path {
 	transition: fill-opacity 250ms ease-in;
 }
